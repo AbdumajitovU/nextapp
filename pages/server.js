@@ -11,14 +11,20 @@ export default function Home({ data }) {
     <div className="max-w-5xl mx-auto p-10">
       {data.length > 0 &&
         data.map((stadion) => {
-          return <p>{stadion.title}</p>;
+          return (
+            <p className="border-2 mx-8 border-purple-600 my-4 text-purple-600">
+              {stadion.body}
+            </p>
+          );
         })}
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
-  const { data } = await axios.get("http://localhost:3000/products");
+  const { data } = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
 
   if (!data) {
     return {
